@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/AppHooks.js',
+  entry: './src/TodoList.js',
   mode: 'development',
   output: {
     path: path.resolve('dist'),
