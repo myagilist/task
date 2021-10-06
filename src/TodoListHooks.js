@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import './style.scss';
 
-function Todo(props) {
+function Task(props) {
   return (
     <div className="todo">
       <p>{props.message}</p>
@@ -20,13 +20,16 @@ function TodoList() {
   }
 
   const handleTodo = () => {
-    addTodo([...list, <Todo message={currentMessage} />])
+    addTodo([...list, <Task message={currentMessage} />])
   }
 
   return (
     <div>
       <h1>Todolist</h1>
-      <input onChange={handleMessage} value={currentMessage}/> 
+      <input 
+        onChange={handleMessage} 
+        value={currentMessage}
+      /> 
       <button onClick={handleTodo}>Ajouter une tâche</button>
 
       {list}
