@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/script.js',
+  entry: './src/AppHooks.js',
   mode: 'development',
   output: {
     path: path.resolve('dist'),
@@ -38,3 +38,5 @@ module.exports = {
     ]
   }
 };
+
+
