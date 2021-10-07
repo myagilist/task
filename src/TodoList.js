@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
+import Todo from './Todo.ts';
+
 import './style.scss';
 
 let counter = 0;
-const levels = ['lowest', 'low', 'medium', 'high'];
 
 function usePriority(current) {
   const [level, setLevel] = useState(current);
 
   const modifyLevel = () => setLevel(l => { 
-    if (l < (levels.length - 1)) { 
+    if (l < (Todo.priorities.length - 1)) { 
       return l + 1 
     } else { 
       return 0 
@@ -21,12 +22,14 @@ function usePriority(current) {
 }
 
 function Task(props) {
-  const [currentPriority, changePriority] = usePriority(0);
+  const [currentPriority, changePriority] = usePriority(props.level);
 
   return (
     <div key={props.counter} className="todo" onClick={changePriority}>
       <p>{props.message}</p>
-      <span className={`badge badge-${levels[currentPriority]}`}>{levels[currentPriority]}</span>
+      <span>Publié le {props.publishedAt}</span>
+      <br/>
+      <span className={`badge badge-${Todo.priorities[currentPriority]}`}>{Todo.priorities[currentPriority]}</span>
     </div>
   )
 }
@@ -41,7 +44,17 @@ function TodoList() {
 
   const handleTodo = () => {
     counter += 1;
-    addTodo([...list, <Task key={counter} message={currentMessage} />])
+    const todo = new Todo(currentMessage);
+
+    addTodo([
+      ...list, 
+      <Task 
+        key={counter} 
+        message={todo.content} 
+        publishedAt={todo.publishedAt()}
+        priority={todo.priority}
+        level={todo.priorityIndex()}
+      />])
   }
 
   return (
