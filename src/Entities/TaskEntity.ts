@@ -1,13 +1,28 @@
-class Todo {
-  public static priorities: Array<string> = ['lowest', 'low', 'medium', 'high'];
-  
+class TaskEntity {
+  public static levels: Array<string> = ['lowest', 'low', 'medium', 'high', 'highest'];
+  public static levelToScore(level: string): number {
+    let i = TaskEntity.levelToIndex(level) + 2;
+    let j = 0;
+
+
+
+    return 1;
+  }
+
+  public static levelToIndex(level: string): number {
+    return TaskEntity.levels.indexOf(level);
+  }
+
+
   public content: string;
   public priority: string;
+  public difficulty: string;
   public date: Date;
 
   constructor(message: string) {
     this.content = this.toContent(message);
     this.priority = this.toPriority(message); 
+    this.difficulty = 'low';
     this.date = new Date();
   }
 
@@ -20,7 +35,7 @@ class Todo {
   }
 
   public priorityIndex(): number {
-    return Todo.priorities.indexOf(this.priority);
+    return TaskEntity.levels.indexOf(this.priority);
   }
 
   public priorityClassName(): string {
@@ -41,7 +56,7 @@ class Todo {
   private toPriority(message: string): string {
     let splittedMessage = message.split(' ');
 
-    return Todo.priorities[this.countLevel(splittedMessage[0])];
+    return TaskEntity.levels[this.countLevel(splittedMessage[0])];
   }
 
   private countLevel(message: string): number {
@@ -49,4 +64,4 @@ class Todo {
   }
 }
 
-export default Todo;
+export default TaskEntity;
