@@ -1,2 +1,4 @@
 /node_modules/*
 proc.pid
+.env
+/dist/*

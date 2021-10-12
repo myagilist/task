@@ -1,6 +1,45 @@
 .hide {
   display: none;
 }
+
+header {
+  .flex-container {
+    display: flex;
+    height: 100%;
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .logo { background-color:red;flex-grow:2; }
+  .add { 
+    flex-grow:1; 
+    background-color:green;
+  }
+  
+  .personal { 
+    flex-grow:5; 
+
+    img {
+      display: inline-block;
+      margin: 5px;
+      max-width: 80px;
+      max-height: 80px;
+      background-color: #FFF;
+      padding: 2px;
+      border: 4px solid #CCC;
+      cursor: pointer;
+    }
+
+    .pseudo {
+      line-height: 100%;
+      font-size: 1.2em;
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: center;
+    }
+  }
+}
+
 .panel {
   &-todo {
     position: relative;
