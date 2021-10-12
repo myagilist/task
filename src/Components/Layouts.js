@@ -10,10 +10,6 @@ export function HeaderLayout(props) {
         <div className="separation">
           <button>+</button>
         </div>  
-        <div className="personal">
-          <img src={props.user.user_metadata.avatar_url} />
-          <p className="pseudo">{props.user.user_metadata.user_name}</p>
-        </div>  
       </div>
     </header>
   )

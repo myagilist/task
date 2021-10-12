@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
-import { client } from './client';
 
 import TaskComponent from './Components/TaskComponent';
 import { HeaderLayout} from './Components/Layouts';
@@ -14,29 +13,7 @@ let counter = 0;
 function App() {
   const [currentMessage, setMessage] = useState("");
   const [list, addTodo] = useState([]);
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    checkUser();
-    client.auth.onAuthStateChange(() => { 
-      checkUser();
-    });
-  }, []);
-  
-  const checkUser = () => {
-    const u = client.auth.user();
-    setUser(u);
-  }
-  
-  const signInWithGithub = () => {
-    client.auth.signIn({ provider: 'github' }); 
-  }
-  
-  const signOut = () => {
-    client.auth.signOut();
-    setUser(null);
-  }
-  
   const handleCrossTodo = e => {
     addTodo(list.splice(e.target.value, 1))
   }
@@ -61,34 +38,21 @@ function App() {
       setMessage("");
     }
   }
-  
-  if(user) {
-    console.log(user)
-    return (
-      <>
-        <HeaderLayout user={user} />
-        <TaskFormComponent   
-          handleTodo={handleTodo}
-          handleMessage={e => { setMessage(e.target.value) } } 
-          currentMessage={currentMessage}
-        /> 
+ 
+  return (
+    <>
+      <header>
+        <h1>MyAgiList</h1>
+      </header>
+      <TaskFormComponent   
+        handleTodo={handleTodo}
+        handleMessage={e => { setMessage(e.target.value) } } 
+        currentMessage={currentMessage}
+      /> 
 
-        {list}
-
-        <button onClick={signOut}>Sign out..</button>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <h1>Welcome to your favorite Todolist !</h1>
-        <a onClick={signInWithGithub} className="btn">
-          <i className="fa fa-github"></i> Sign in with Github
-        </a>
-      </>
-    );
-  }
-
+      {list}
+    </>
+  )
 }
 
 

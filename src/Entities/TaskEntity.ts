@@ -1,18 +1,9 @@
 class TaskEntity {
   public static levels: Array<string> = ['lowest', 'low', 'medium', 'high', 'highest'];
-  public static levelToScore(level: string): number {
-    let i = TaskEntity.levelToIndex(level) + 2;
-    let j = 0;
-
-
-
-    return 1;
-  }
-
+ 
   public static levelToIndex(level: string): number {
     return TaskEntity.levels.indexOf(level);
   }
-
 
   public content: string;
   public priority: string;

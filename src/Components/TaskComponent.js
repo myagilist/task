@@ -13,7 +13,6 @@ export default function TaskComponent(props) {
       <p>{props.message}</p>
       <div>
         <span onClick={changePriority} className={`badge badge-${TaskEntity.levels[currentPriority]}`}>Priority : {TaskEntity.levels[currentPriority]}</span>
-        <span onClick={changeDifficulty} className={`badge badge-${TaskEntity.levels[currentDifficulty]}`}>Difficulty : {TaskEntity.levels[currentDifficulty]}</span>
       </div>
     </div>
   )
