@@ -7,13 +7,11 @@ class TaskEntity {
 
   public content: string;
   public priority: string;
-  public difficulty: string;
   public date: Date;
 
   constructor(message: string) {
     this.content = this.toContent(message);
     this.priority = this.toPriority(message); 
-    this.difficulty = 'low';
     this.date = new Date();
   }
 
